@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en" layout:decorate="default" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title> Admin</title>
+</head>
+
+<body>
+<div class="row page-create" layout:fragment="content">
+    <div class="row">
+        <h2>
+            My Profile
+        </h2>
+        <h5 class="text-danger text-center" th:text="${msg}"></h5>
+        <form th:action="@{/account/profile/update}" th:object="${obj}">
+            <table class="tbl-form">
+                <tr>
+                    <td> Name</td>
+                    <td><input class="form-control" name="name" th:value="${obj.name}" type="text"/></td>
+                </tr>
+                <tr>
+                    <td> User Name</td>
+                    <td><input class="form-control" name="userName" th:value="${obj.userName}" type="text"/></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input class="form-control" name="password" th:value="${obj.password}" type="password"/></td>
+                </tr>
+            </table>
+
+            <input name="id" th:value="${obj.id}" type="hidden"/>
+            <button class="btn btn-success btn-submit" type="submit">Update</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

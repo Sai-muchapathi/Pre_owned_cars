@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="default">
+
+<head>
+<title>Add Booking</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content" class="row page-create">
+	<script>
+function card() {
+   if (document.getElementById("mode3").checked) {
+       document.getElementById("t1").style.visibility = "hidden";
+       document.getElementById("t2").style.visibility = "hidden";
+       document.getElementById("t3").style.visibility = "hidden";
+   } else {
+   	document.getElementById("t1").style.visibility = "visible";
+       document.getElementById("t2").style.visibility = "visible";
+       document.getElementById("t3").style.visibility = "visible";
+   }
+}
+</script>
+		<div class="row">
+			<h2 class="text-white p-3">Update Payment Details</h2>
+
+			<form th:action="@{/booking/update/pay}" th:object="${payment}">
+				<table class="tbl-form my-3">
+					<tr>
+						<th>CarId :</th>
+						<td><input readonly type="text" class="form-control"
+							name="carId" th:value="${car.carId}" /></td>
+					</tr>
+					<tr>
+						<th>Total Amount :</th>
+						<td><input readonly type="text" class="form-control" name="amount" th:value="${car.amount}" /></td>
+					</tr>
+					<tr>
+						<th>Booking Amount :</th>
+						<td><input readonly type="text" class="form-control" name="bookingAmount" th:value="${car.bookingAmount}" /></td>
+					</tr>
+					<tr>
+						<th>Balance Amount :</th>
+						<td><input readonly type="text" class="form-control" name="balanceAmount" th:value="${car.amount - car.bookingAmount}" /></td>
+					</tr>
+					<tr>
+						<th>Payment Mode : </th>
+						<td><input type="radio" name="paymentMode" value="Credit Card" th:checked="${car.paymentMode == 'Credit Card'}"
+							checked class="form-check-input" id="mode1" onclick="card()"/> <label
+							class="form-check-label" for="mode1"> Credit Card </label>
+
+
+							&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input type="radio" name="paymentMode" value="Debit Card" th:checked="${car.paymentMode == 'Debit Card'}" onclick="card()" class="form-check-input" id="mode2" /> 
+							<label class="form-check-label" for="mode2"> Debit Card </label>
+							
+							
+
+							&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input type="radio" name="paymentMode" value="Others" th:checked="${car.paymentMode == 'Others'}" class="form-check-input" onclick="card()" id="mode3" /> 
+							<label class="form-check-label" for="mode3"> Others </label>
+							</td>
+					</tr>
+					<tr id="t1">
+						<th>Card No</th>
+						<td><input type="text" class="form-control" name="cardNo" th:value="${car.cardNo}"/></td>
+					</tr>
+					<tr id="t2">
+						<th>CVV</th>
+						<td><input type="text" class="form-control" name="cvv" th:value="${car.cvv}"/></td>
+					</tr>
+					<tr id="t3">
+						<th>Expiry Date</th>
+						<td><input type="date" class="form-control" name="expDate" th:value="${car.expDate}"/></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="text-center p-5">
+										<input type="hidden" name="id" th:value="${car.id}" />
+										<input type="hidden" name="paymentId" th:value="${car.paymentId}" />
+										<input type="hidden" name="sellerId" th:value="${car.sellerId}" />
+										<input type="hidden" name="buyerId" th:value="${car.buyerId}" />
+										<input type="hidden" name="bookingDate" th:value="${car.bookingDate}" />
+						
+							<button type="submit" class="btn btn-success btn-submit">Pay Balance</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+			
+		</div>
+		
+	
+	</div>
+</body>
+
+</html>

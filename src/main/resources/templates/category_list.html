@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="default">
+
+<head>
+	<title>Category List</title>
+</head>
+
+<body>
+	<div layout:fragment="content" class="row">
+		<div class="row page-list">
+
+			<h2>
+				Category List
+			</h2>
+			<h6 th:text="${msg}" class="text-danger text-center"></h6>
+			<div class="my-4">
+				<form th:action="@{/category/save}" th:object="${category}" method="post" class="row row-cols-lg-auto g-3 align-items-center justify-content-center">
+					<div class="col-12">
+						<label class="visually-hidden" for="category">Category</label>
+						<input type="text" name="name" th:value="${obj.name}" class="form-control" id="category" placeholder="Category">
+					</div>
+
+					<div class="col-12">
+						<input type="hidden" name="catId" th:value="${obj.catId}">
+						<input type="hidden" name="id" th:value="${obj.id}">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-striped page-details">
+					<thead class="table-dark">
+						<tr>
+							<th>Category&nbsp;Id</th>
+							<th>Category</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="data : ${datalist}">
+							<td th:text="${data.catId}"></td>
+							<td th:text="${data.name}"></td>
+							<td >
+								<a  th:text="Edit" th:href="@{'/category/list?id='+${data.id}}" class="btn btn-primary"></a>
+							</td>
+							<td>
+								<a  th:text="Delete" th:href="@{'/category/delete/' + ${data.id}}" class="btn btn-danger"></a>
+							</td >
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

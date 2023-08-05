@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Car Sales Management</title>
+    <link href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/webjars/bootstrap/5.1.3/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+</head>
+
+<body style="background:url('../img/bg.jpg')">
+<nav class="navbar  navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">Car Sales Management System</a>
+        <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#navbarNavAltMarkup" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid content-page" style="height:520px;">
+    <div class="container starter-template" style="background-color: rgba(252, 241, 220, 0.8);height:600px;">
+        <div class="row page-create" style="padding:65px 20px;width:500px;">
+            <h2 style="color:white; background-color:#308e96; padding:10px 0px;">
+                New Seller Signup
+
+            </h2>
+
+            <form th:action="@{/seller/save}" th:object="${seller}">
+                <table class="tbl-form">
+                    <tr>
+                        <td>Name</td>
+                        <td><input class="form-control" name="name" required type="text"/></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td><textarea class="form-control" cols="60" name="address" required rows="3"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Mobile</td>
+                        <td><input class="form-control" name="mobile" required type="text"/></td>
+                    </tr>
+                    <tr>
+                        <td>Email Id</td>
+                        <td><input class="form-control" name="emailId" required type="text"/></td>
+                    </tr>
+
+                    <tr>
+                        <td>Password</td>
+                        <td><input class="form-control" name="password" required type="password"/></td>
+                    </tr>
+                    <tr>
+                        <td>Confirm Password</td>
+                        <td><input class="form-control" required type="password"/></td>
+                    </tr>
+                </table>
+                <button class="btn btn-success btn-submit" type="submit">Save</button>
+                <a class="btn btn-danger" href="/"><span class="glyphicon glyphicon-list"></span>
+                    Login</a>
+            </form>
+        </div>
+    </div>
+</div><!-- /.container -->
+
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

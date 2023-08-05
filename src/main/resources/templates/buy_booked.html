@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en" layout:decorate="default" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Booking List</title>
+</head>
+
+<body>
+<div class="row" layout:fragment="content">
+    <div class="row page-list">
+
+        <h2>
+            Booked Cars
+        </h2>
+        <div class="table-responsive">
+            <table class="table table-striped page-details">
+                <thead class="table-dark">
+                <tr>
+                    <th>Car Id</th>
+                    <th>Booking Id</th>
+                    <th>Seller Id</th>
+                    <th>Booked Date</th>
+                    <th>Total Amount</th>
+                    <th>Booking Amount</th>
+                    <th>PayMode</th>
+                    <th>Action</th>
+                    <th>Cancel</th>
+                    <th>Details</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="data : ${datalist}">
+                    <td th:text="${data.carId}"></td>
+                    <td th:text="${data.paymentId}"></td>
+                    <td th:text="${data.sellerId}"></td>
+                    <td th:text="${data.bookingDate.split('T')[0]}"></td>
+                    <td th:text="${data.amount}"></td>
+                    <td th:text="${data.bookingAmount}"></td>
+                    <td th:text="${data.paymentMode}"></td>
+                    <td th:if="${data.paymentStatus=='Advance Paid'}">
+                        <a class="btn" th:href="@{'/booking/update/' + ${data.id}}" th:text="Payment"></a>
+                    </td>
+                    <td th:if="${data.paymentStatus=='Advance Paid'}">
+                        <a class="btn" th:href="@{'/booking/cancel/' + ${data.id}}" th:text="Cancel"></a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

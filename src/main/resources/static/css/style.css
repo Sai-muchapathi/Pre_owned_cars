@@ -1,0 +1,64 @@
+.tbl-form, .tbl-show, .create-form, .edit-form {
+    margin: auto;
+}
+
+.tbl-form tr td {
+    padding: 5px;
+}
+
+
+.container {
+
+    text-align: center;
+}
+
+div .child {
+    display: inline-block;
+    padding: 2% 3%;
+    margin: 0px;
+}
+
+.page-create, .page-list, .page-edit, .page-view {
+    text-align: center;
+    margin: auto;
+}
+
+.page-create table, .page-edit table, .page-view table {
+    text-align: left;
+}
+
+.page-create h2, .page-list h2, .page-edit h2, .page-view h2 {
+    color: black;
+    margin: 10px auto !important;
+}
+
+.page-view .tbl-show {
+    width: 700px;
+}
+
+.page-view .tbl-show tr td:first-child {
+    padding-left: 40px;
+}
+
+.btn-submit {
+    min-width: 150px;
+}
+
+.content-page {
+    background-color: rgba(221, 240, 255, 0.95);
+    min-height: 600px;
+}
+
+
+.txt-orange {
+    color: black !important;
+}
+
+.ts {
+    text-shadow: 2px 2px 2px black;
+}
+
+.btn {
+    border-radius: 20px;
+    color: white;
+}

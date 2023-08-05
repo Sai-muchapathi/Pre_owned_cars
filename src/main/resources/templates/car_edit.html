@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="default">
+
+<head>
+	<title>Edit Car Details </title>
+</head>
+
+<body>
+	<div layout:fragment="content" class="row page-edit">
+		<div class="row">
+			<h2>
+				Edit Car Details
+				
+			</h2>
+			<form th:action="@{/car/update}" th:object="${car}">
+				<table class="tbl-form">
+				<input type="hidden" name="sellerId" th:value="${obj.sellerId}"/>
+				<input type="hidden" name="imgUrl" th:value="${obj.imgUrl}"/>
+
+					<tr>
+						<td>Car Id</td>
+						<td><input type="text" readonly class="form-control" name="carId"  th:value="${obj.carId}"/></td>
+						<td width="100px"></td>
+						<td>Brand</td>
+						<td><input type="text" class="form-control" name="brand"  th:value="${obj.brand}"/></td>
+					</tr>
+					<tr>
+						<td>Model</td>
+						<td><input type="text" class="form-control" name="model" th:value="${obj.model}" /></td>
+						<td></td>
+						<td>Color</td>
+						<td><input type="text" class="form-control" name="color" th:value="${obj.color}" /></td>
+					</tr>
+					<tr>
+						<td>Engine</td>
+						<td><input type="text" class="form-control" name="engine" th:value="${obj.engine}" /></td>
+						<td></td>
+						<td>FuelType</td>
+						<td><input type="text" class="form-control" name="fuelType" th:value="${obj.fuelType}" /></td>
+					</tr>
+					<tr>
+						<td>Mileage</td>
+						<td><input type="text" class="form-control" name="mileage" th:value="${obj.mileage}" /></td>
+						<td></td>
+						<td>Reg Year</td>
+						<td><input type="text" class="form-control" name="regYear" th:value="${obj.regYear}" /></td>
+					</tr>
+					<tr>
+						<td>No Of Owners</td>
+						<td><input type="text" class="form-control" name="noOfOwner" th:value="${obj.noOfOwner}" /></td>
+						<td></td>
+						<td>Price</td>
+						<td><input type="text" class="form-control" name="price" th:value="${obj.price}" /></td>
+					</tr>
+					<tr>
+						<td>Description</td>
+						<td colspan="4"><textarea class="form-control" name="description" cols="60" rows="3" th:text="${obj.description}"></textarea></td>
+					</tr>
+
+				</table>
+				<input type="hidden" name="id" th:value="${obj.id}" />
+				<input type="hidden" name="status" th:value="${obj.status}" />
+				<input type="hidden" name="postedDate" th:value="${obj.postedDate}" />
+				<button type="submit" class="btn btn-success btn-submit">Update</button>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

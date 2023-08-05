@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Car Sales Management</title>
+	<link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body  style="background:url('../img/bg.jpg')">
+	<nav class="navbar  navbar-expand-lg navbar-dark bg-primary">
+		<div class="container">
+			<a class="navbar-brand" href="#">Car Sales Management System</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid content-page" style="height:520px;">
+		<div style="min-height:600px;" >
+			<div class="container starter-template">
+
+				<div class="row page-create">
+
+					<h2>
+						<br><br><br>
+						Logged Out Successfully
+						<br><br>
+					</h2>
+					<form th:action="@{/customer/login}" th:object="${login}" method="POST">
+						<span style="color:red;margin:30px;" th:text="${msg}"></span>
+
+						<table class="tbl-form">
+							<tr>
+								<td>
+									<a href="/account" class="btn btn-success btn-submit">
+										Login
+									</a>
+									
+								</td>
+							</tr>
+
+						</table>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div><!-- /.container -->
+
+	<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

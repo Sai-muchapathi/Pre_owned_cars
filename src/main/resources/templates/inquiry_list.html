@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en" layout:decorate="default" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Inquiry List</title>
+</head>
+
+<body>
+<div class="row" layout:fragment="content">
+    <div class="row page-list">
+
+        <h2>
+            Inquiry List
+        </h2>
+        <h6 class="text-danger text-center" th:text="${msg}"></h6>
+        <div class="table-responsive">
+            <table class="table table-striped page-details">
+                <thead class="table-dark">
+                <tr>
+                    <th>Car&nbsp;Id</th>
+                    <th>Buyer&nbsp;Id</th>
+                    <th>Inquired&nbsp;On</th>
+                    <th>Inquiry</th>
+                    <th>Response</th>
+                    <th>Responded&nbsp;On</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="data : ${datalist}">
+                    <td th:text="${data.carId}"></td>
+                    <td th:text="${data.buyerId}"></td>
+                    <td th:text="${data.inquiryDate}"></td>
+                    <td th:text="${data.inquiry}"></td>
+                    <td th:text="${data.response}"></td>
+                    <td th:text="${data.responseDate}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{'/inquiry/respond/'+${data.id}}"
+                           th:if="${session.usertype == 'seller'}" th:text="Respond"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

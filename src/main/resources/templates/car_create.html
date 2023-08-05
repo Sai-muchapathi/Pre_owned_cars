@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="en" layout:decorate="default" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${obj.id != null ? 'Update Car' : 'Add New Car'}"></title>
+</head>
+
+<body>
+<div class="row page-create" layout:fragment="content">
+    <div class="row">
+        <h2 th:text="${obj.id != null ? 'Update Car' : 'Add New Car'}"></h2>
+
+        <form enctype="multipart/form-data" method="post" th:action="@{/car/save}" th:object="${car}">
+            <table class="tbl-form">
+                <tr>
+                    <td>Photo</td>
+                    <td style="width:30%;">
+                        <input accept="image/png, image/jpeg" name="image" type="file"/>
+                        <input name="imgUrl" th:value="${obj.imgUrl}" type="hidden">
+                        <a target="_blank" th:href="@{'/uploads/' + ${obj.imgUrl}}" th:if="${obj.id != null}">View
+                            Photo</a>
+                    </td>
+                    <td style="width:10%;"></td>
+                    <td>Category</td>
+                    <td style="width:30%;">
+                        <select class="form-select" name="categoryId" required>
+                            <option value="">--Select--</option>
+                            <option th:each="cat : ${categories}" th:selected="${cat.id == obj.categoryId}"
+                                    th:text="${cat.name}"
+                                    th:value="${cat.id}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Brand</td>
+                    <td><input class="form-control" name="brand" required th:value="${obj.brand}" type="text"/></td>
+                    <td></td>
+                    <td>Model</td>
+                    <td><input class="form-control" name="model" required th:value="${obj.model}" type="text"/></td>
+                </tr>
+                <tr>
+                    <td>Registered year</td>
+                    <td><input class="form-control" name="regYear" required th:value="${obj.regYear}" type="text"/></td>
+                    <td></td>
+                    <td>Registration Number</td>
+                    <td><input class="form-control" name="regNumber" required th:value="${obj.regNumber}" type="text"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>
+                        <select class="form-select" id="state" name="state" required>
+                            <option value="">--Select--</option>
+                            <option th:selected="${obj.state == 'Kansas'}">Kansas</option>
+                            <option th:selected="${obj.state == 'Missouri'}">Missouri</option>
+                            <option th:selected="${obj.state == 'NewYork'}">NewYork</option>
+                            <option th:selected="${obj.state == 'California'}">California</option>
+                            <option th:selected="${obj.state == 'New Jersey'}">New Jersey</option>
+                        </select>
+                    </td>
+                    <td></td>
+                    <td>Vin Number</td>
+                    <td><input class="form-control" name="vinNumber" required th:value="${obj.vinNumber}" type="text"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Engine capacity</td>
+                    <td><input class="form-control" name="engineCapacity" th:value="${obj.engineCapacity}" type="text"/>
+                    </td>
+                    <td></td>
+                    <td>Transmission</td>
+                    <td>
+                        <select class="form-select" id="transmission" name="transmission" required>
+                            <option value="">--Select--</option>
+                            <option th:selected="${obj.transmission == 'Manual'}">Manual</option>
+                            <option th:selected="${obj.transmission == 'Automatic'}">Automatic</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>KM Driven</td>
+                    <td><input class="form-control" name="kmDriven" th:value="${obj.kmDriven}" type="text"/></td>
+                    <td></td>
+                    <td>Fuel Type</td>
+                    <td>
+                        <select class="form-select" id="fuelType" name="fuelType" required>
+                            <option value="">--Select--</option>
+                            <option th:selected="${obj.fuelType == 'Petrol'}">Petrol</option>
+                            <option th:selected="${obj.fuelType == 'Diesel'}">Diesel</option>
+                            <option th:selected="${obj.fuelType == 'CNG'}">CNG</option>
+                            <option th:selected="${obj.fuelType == 'LPG'}">LPG</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>No Of Owners</td>
+                    <td><input class="form-control" name="noOfOwner" th:value="${obj.noOfOwner}" type="text"/></td>
+                    <td></td>
+                    <td>Price</td>
+                    <td><input class="form-control" name="basePrice" th:value="${obj.basePrice}" type="text"/></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td colspan="4">
+						<textarea class="form-control" cols="60" name="description" rows="3"
+                                  th:text="${obj.description}"></textarea>
+                    </td>
+                </tr>
+
+            </table>
+            <input name="id" th:value="${obj.id}" type="hidden">
+            <button class="btn btn-success btn-submit" type="submit">Save</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

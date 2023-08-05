@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en" layout:decorate="default" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Car List</title>
+</head>
+
+<body>
+<div class="row" layout:fragment="content">
+    <div class="row page-list">
+
+        <h2>
+            Car List
+            <a class="btn btn-warning" href="/car/create" th:if="${session.name != 'Admin'}"><span
+                    class="glyphicon glyphicon-plus-sign"></span>
+                Add New</a>
+        </h2>
+        <div class="table-responsive">
+            <table class="table table-striped page-details">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Seller Price</th>
+                    <th>Status</th>
+                    <th>Commission&nbsp;(%)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="data : ${datalist}">
+                    <td><a th:href="@{'/car/show/' + ${data.id}}" th:text="${data.carId}"></a></td>
+                    <td th:text="${data.brand}"></td>
+                    <td th:text="${data.model}"></td>
+                    <td th:text="|$ ${data.basePrice}"></td>
+                    <td th:text="${data.isApproved ? 'Approved' : 'Pending'}"></td>
+                    <td th:if="${data.commissionPercentage != 0.0}"
+                        th:text="${data.commissionPercentage}"></td>
+                    <td th:if="${data.commissionPercentage == 0.0 && session.usertype == 'admin'}	">
+                        <form th:action="@{/car/admin/update}">
+                            <input max="100" min="1" name="commission" required type="number"/>
+                            <input name="id" th:value="${data.id}" type="hidden"/>
+                            <button class="btn btn-sm btn-success" type="submit">Approve</button>
+                        </form>
+                        <a class="btn btn-sm btn-danger" th:href="@{'/car/admin/reject?id='+${data.id}}">Reject</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

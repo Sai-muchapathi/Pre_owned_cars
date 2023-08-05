@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en" layout:decorate="default" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Inquiry</title>
+</head>
+
+<body>
+<div class="row page-create" layout:fragment="content">
+    <div class="row">
+        <h2>Post Inquiry</h2>
+
+        <form enctype="multipart/form-data" method="post" th:action="@{/inquiry/add}" th:object="${inquiry}">
+            <table class="tbl-form">
+                <tr>
+                    <td>Inquiry</td>
+                    <td>
+                        <textarea class="form-control" cols="30" id="inquiry" name="inquiry" rows="10"></textarea>
+                    </td>
+                </tr>
+
+            </table>
+            <input name="sellerId" th:value="${car.sellerId}" type="hidden1">
+            <input name="carId" th:value="${car.carId}" type="hidden1">
+            <button class="btn btn-success btn-submit" type="submit">Save</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

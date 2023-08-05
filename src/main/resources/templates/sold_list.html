@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en" layout:decorate="default" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Booking List</title>
+</head>
+
+<body>
+<div class="row" layout:fragment="content">
+    <div class="row page-list">
+
+        <h2>
+            Sold Cars
+        </h2>
+        <div class="table-responsive">
+            <table class="table table-striped page-details">
+                <thead class="table-dark">
+                <tr>
+                    <th>Car Id</th>
+                    <th>Payment Id</th>
+                    <th>Seller Id</th>
+                    <th>Buyer Id</th>
+                    <th>Booked Date</th>
+                    <th>Amount</th>
+                    <th>PayMode</th>
+                    <th>Status</th>
+                    <th th:if="${session.usertype == 'seller'}">Details</th>
+                    <th th:if="${session.usertype == 'admin'}">Settle</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="data : ${datalist}">
+                    <td th:text="${data.carId}"></td>
+                    <td th:text="${data.paymentId}"></td>
+                    <td th:text="${data.sellerId}"></td>
+                    <td th:text="${data.buyerId}"></td>
+                    <td th:text="${data.bookingDate}"></td>
+                    <td th:text="${data.amount}"></td>
+                    <td th:text="${data.paymentMode}"></td>
+                    <td th:text="${data.paymentStatus}"></td>
+
+                    <td th:if="${session.usertype == 'seller'}">
+                        <a class="btn" th:href="@{'/car/details/' + ${data.carId}}"
+                           th:text="Details"></a>
+                    </td>
+                    <td th:if="${session.usertype == 'admin' && data.settlementStatus!='Settled'}">
+                        <a class="btn" th:href="@{'/car/settle/' + ${data.carId}}" th:text="Settle"></a>
+                    </td>
+                    <td th:if="${session.usertype == 'admin' && data.settlementStatus=='Settled'}"
+                        th:text="${'Settled'}"></td>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

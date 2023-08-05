@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="en" layout:decorate="default" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Show Car Details</title>
+</head>
+
+<body>
+<div class="row page-view" layout:fragment="content">
+    <div class="row">
+
+        <h2>
+            <span th:text="${obj.brand}"></span>
+        </h2>
+
+        <table class="tbl-show table ">
+            <tr>
+                <td colspan="5">
+                    <img th:src="@{'/uploads/' + ${obj.imgUrl}}" width="600px">
+                </td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td style="width:40%;" th:text="${obj.category.name}"></td>
+                <td style="width:5%;"></td>
+                <td>Car Id</td>
+                <td style="width:40%;" th:text="${obj.carId}"></td>
+            </tr>
+            <tr>
+                <td>Brand</td>
+                <td th:text="${obj.brand}"></td>
+                <td></td>
+                <td>Model</td>
+                <td th:text="${obj.model}"></td>
+            </tr>
+            <tr>
+                <td>Reg&nbsp;year</td>
+                <td th:text="${obj.regYear}"></td>
+                <td></td>
+                <td>Reg&nbsp;Number</td>
+                <td th:text="${obj.regNumber}"></td>
+            </tr>
+            <tr>
+                <td>Engine&nbsp;capacity</td>
+                <td th:text="${obj.engineCapacity}"></td>
+                <td></td>
+                <td>Transmission</td>
+                <td th:text="${obj.transmission}"></td>
+            </tr>
+            <tr>
+                <td>Reg Number</td>
+                <td th:text="${obj.regNumber}"></td>
+                <td></td>
+                <td>Reg Year</td>
+                <td th:text="${obj.regYear}"></td>
+            </tr>
+            <tr>
+                <td>Km Driven</td>
+                <td th:text="${obj.kmDriven}"></td>
+                <td></td>
+                <td>Fuel Type</td>
+                <td th:text="${obj.fuelType}"></td>
+            </tr>
+            <tr>
+                <td>Owners</td>
+                <td th:text="${obj.noOfOwner}"></td>
+                <td></td>
+                <td>Price</td>
+                <td th:text="${obj.basePrice}"></td>
+            </tr>
+            <tr>
+                <td>SellerId</td>
+                <td th:text="${obj.sellerId}"></td>
+                <td></td>
+                <td>Commission&nbsp;(%)</td>
+                <td th:text="${obj.commissionPercentage}"></td>
+            </tr>
+            <tr>
+                <td>Sale Status</td>
+                <td th:text="${obj.isSold ? 'Sold' : 'Available'}"></td>
+                <td></td>
+                <td>Approval Status</td>
+                <td th:text="${obj.isApproved ? 'Approved' : 'Pending' }"></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td colspan="4" th:text="${obj.description}"></td>
+            </tr>
+
+
+        </table>
+
+        <form action="/car/delete">
+            <input name="id" th:value="${obj.id}" type="hidden"/>
+            <h2><input class="btn btn-danger btn-submit" onclick="return confirm('Are you sure?');" type="submit"
+                       value="Delete"/>
+                <a class="btn btn-warning btn-submit" th:href="@{'/car/edit/' + ${obj.id}}">Edit</a>
+            </h2>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

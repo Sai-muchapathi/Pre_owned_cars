@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="default">
+
+<head>
+	<title> Buyer</title>
+</head>
+
+<body>
+	<div layout:fragment="content" class="row page-create">
+		<div class="row">
+			<br><br>
+			<h2 class="txt-orange ts">View All Cars</h2>
+	<div class="">
+		<form th:action="@{/buyer/home}" class="row justify-content-center align-items-end">
+			<div class="col-sm-3">
+				<label for="catId" class="form-label">Body Type</label>
+				<select class="form-select" id="catId" name="catId">
+					<option value="">--Select--</option>
+					<option th:each="cat : ${categories}"
+							th:text="${cat.name}"
+							th:value="${cat.id}" th:selected="${cat.id == catId }"></option>
+				</select>
+			</div>
+			<div class="col-sm-3">
+				<label for="fuelType" class="form-label">Fuel Type</label>
+				<select class="form-select" id="fuelType" name="fuelType">
+					<option value="">--Select--</option>
+					<option th:selected="${fuelType == 'Petrol'}">Petrol</option>
+					<option th:selected="${fuelType == 'Diesel'}">Diesel</option>
+					<option th:selected="${fuelType == 'CNG'}">CNG</option>
+					<option th:selected="${fuelType == 'LPG'}">LPG</option>
+				</select>
+			</div>
+			<div class="col-sm-3">
+				<label for="budget" class="form-label">Budget</label>
+				<select class="form-select" id="budget" name="budget">
+					<option value="">--Select--</option>
+					<option value="1"  th:selected="${budget == '1'}">$5000 - $10000</option>
+					<option value="2"  th:selected="${budget == '2'}">$10000 - $40000</option>
+					<option value="3"  th:selected="${budget == '3'}">$40000 - $70000</option>
+					<option value="4"  th:selected="${budget == '4'}">Above $70000</option>
+				</select>
+			</div>
+			<div class="col-sm-1">
+				<button class="btn btn-primary">Search</button>
+			</div>
+			<div class="col-sm-1">
+				<a href="/buyer/home" class="btn btn-warning">Reset</a>
+			</div>
+
+		</form>
+	</div>
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="col-md-4 mb-3" th:each="data : ${datalist}">
+					<div class="card h-100">
+						<img th:src="'/uploads/'+${data.imgUrl}" class="card-img-top" width="100%" height="200px">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${data.brand}"></h5>
+							<p class="card-text">
+							<table width="100%">
+								<tr>
+									<td th:text="${data.description}"></td>
+								</tr>
+
+							</table>
+							</p>
+						</div>
+						<div class="card-footer text-center">
+							<a th:href="@{'/car/details/'+${data.carId}}" class="btn btn-primary">Details</a>
+							<a th:href="@{'/inquiry/add/'+${data.carId}}" class="btn btn-primary">Inquire</a>
+							<a th:href="@{'/seller/details/'+${data.sellerId}}" class="btn btn-info">Seller</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</body>
+
+</html>

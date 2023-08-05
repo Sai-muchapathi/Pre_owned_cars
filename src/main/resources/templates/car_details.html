@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="en" layout:decorate="default"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Show Car Details</title>
+</head>
+
+<body>
+<div class="row page-view" layout:fragment="content">
+    <div class="row">
+
+        <h2>
+            <span th:text="${obj.brand}"></span> <span th:text="${obj.model}"></span>
+            <span th:text="${obj.regYear}"></span>
+        </h2>
+
+        <table class="tbl-show table table-success ">
+            <tr>
+                <td colspan="5"><img th:src="@{'/uploads/' + ${obj.imgUrl}}"
+                                     width="600px"></td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td style="width:40%;" th:text="${obj.category.name}"></td>
+                <td style="width:5%;"></td>
+                <td>Car Id</td>
+                <td style="width:40%;" th:text="${obj.carId}"></td>
+            </tr>
+            <tr>
+                <td>Brand</td>
+                <td th:text="${obj.brand}"></td>
+                <td></td>
+                <td>Model</td>
+                <td th:text="${obj.model}"></td>
+            </tr>
+            <tr>
+                <td>Reg&nbsp;year</td>
+                <td th:text="${obj.regYear}"></td>
+                <td></td>
+                <td>Reg&nbsp;Number</td>
+                <td th:text="${obj.regNumber}"></td>
+            </tr>
+            <tr>
+                <td>Engine&nbsp;capacity</td>
+                <td th:text="${obj.engineCapacity}"></td>
+                <td></td>
+                <td>Transmission</td>
+                <td th:text="${obj.transmission}"></td>
+            </tr>
+            <tr>
+                <td>Reg Number</td>
+                <td th:text="${obj.regNumber}"></td>
+                <td></td>
+                <td>Reg Year</td>
+                <td th:text="${obj.regYear}"></td>
+            </tr>
+            <tr>
+                <td>Km Driven</td>
+                <td th:text="${obj.kmDriven}"></td>
+                <td></td>
+                <td>Fuel Type</td>
+                <td th:text="${obj.fuelType}"></td>
+            </tr>
+            <tr>
+                <td>Owners</td>
+                <td th:text="${obj.noOfOwner}"></td>
+                <td></td>
+                <td>Price</td>
+                <td th:text="${obj.basePrice}"></td>
+            </tr>
+            <tr>
+                <td>SellerId</td>
+                <td th:text="${obj.sellerId}"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Sale Status</td>
+                <td th:text="${obj.isSold ? 'Sold' : 'Available'}"></td>
+                <td></td>
+                <td>Booking Status</td>
+                <td th:text="${obj.isBooked ? 'Booked' : 'Pending' }"></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td colspan="4" th:text="${obj.description}"></td>
+            </tr>
+            <tr th:if="${session.usertype=='buyer' && !obj.isBooked}">
+                <td class="text-center" colspan="5">
+                    <a class="btn btn-primary" th:href="@{'/booking/create/'+${obj.id}}">Book Now</a>
+                </td>
+            </tr>
+            <tr th:if="${session.usertype=='seller'  && !obj.isSold}">
+                <td class="text-center" colspan="5">
+                    <a class="btn btn-primary" th:href="@{'/booking/sold/'+${obj.carId}}">Sold</a>
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+</div>
+</body>
+
+</html>

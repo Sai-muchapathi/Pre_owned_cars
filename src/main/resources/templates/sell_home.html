@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="default">
+
+<head>
+<title>Seller</title>
+</head>
+
+<body>
+	<div layout:fragment="content" class="row page-create">
+		<div class="row">
+			<br> <br>
+			<h2 class="txt-orange ts">View My Cars</h2>
+
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="col-md-4" th:each="data : ${datalist}">
+					<div class="card h-100">
+						<img th:src="'/uploads/'+${data.imgUrl}" class="card-img-top" width="100%" height="200px">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${data.brand+' '+data.model}"></h5>
+							<p class="card-text">
+							<p>
+								Category : <span th:text="${data.category.name}"></span>, Engine : <span
+									th:text="${data.engineCapacity}"></span>
+							</p>
+							<p>
+								Reg Year : <span th:text="${data.regYear}"></span>, Fuel Type :
+								<span th:text="${data.fuelType}"></span>
+
+							</p>
+							<p>
+								Price : <span th:text="${data.basePrice}"></span>,
+								Status : <span
+									th:text="${data.isSold ? 'Sold' : 'Available'}"></span>
+							</p>
+							</p>
+						</div>
+						<div class="card-footer text-center">
+							<a th:href="@{'/car/details/'+${data.carId}}" class="btn btn-primary">Details</a>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</body>
+
+</html>

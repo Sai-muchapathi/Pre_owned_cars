@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html lang="en" layout:decorate="default"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Booking</title>
+</head>
+
+<body>
+
+<div class="row page-create" layout:fragment="content">
+    <script>
+function card() {
+/*    if (document.getElementById("mode3").checked) {
+       document.getElementById("t1").style.display = "none";
+       document.getElementById("t2").style.display = "none";
+       document.getElementById("t3").style.display = "none";
+   } else {
+   	document.getElementById("t1").style.display = "block";
+       document.getElementById("t2").style.display = "block";
+       document.getElementById("t3").style.display = "block";
+   } */
+   
+   if (document.getElementById("mode3").checked) {
+       document.getElementById("t1").style.visibility = "hidden";
+       document.getElementById("t2").style.visibility = "hidden";
+       document.getElementById("t3").style.visibility = "hidden";
+   } else {
+   	document.getElementById("t1").style.visibility = "visible";
+       document.getElementById("t2").style.visibility = "visible";
+       document.getElementById("t3").style.visibility = "visible";
+   }
+}
+
+
+
+    </script>
+    <div class="row">
+        <h2 class="text-white p-3">Add Booking Details</h2>
+
+        <form th:action="@{/booking/save}" th:object="${booking}">
+            <table class="tbl-form my-3">
+                <tr>
+                    <th>CarId :</th>
+                    <td><input class="form-control" name="carId" readonly
+                               th:value="${car.carId}" type="text"/></td>
+                </tr>
+                <tr>
+                    <th>Total Amount :</th>
+                    <td><input class="form-control" name="amount" readonly th:value="${car.basePrice}" type="text"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Booking Amount :</th>
+                    <td><input class="form-control" name="bookingAmount" readonly th:value="${car.basePrice*0.5}"
+                               type="text"/></td>
+                </tr>
+                <tr>
+                    <th>Payment Mode :</th>
+                    <td>
+                        <input checked class="form-check-input" id="mode1" name="paymentMode" onclick="card()"
+                               type="radio" value="Credit Card"/> <label
+                            class="form-check-label" for="mode1"> Credit Card </label>
+
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="form-check-input" id="mode2" name="paymentMode" onclick="card()"
+                               type="radio" value="Debit Card"/>
+                        <label class="form-check-label" for="mode2"> Debit Card </label>
+
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="form-check-input" id="mode3" name="paymentMode" onclick="card()" type="radio"
+                               value="others"/>
+                        <label class="form-check-label" for="mode3"> Others </label>
+                    </td>
+                </tr>
+                <tr id="t1">
+                    <th>Card No</th>
+                    <td><input class="form-control" name="cardNo" type="text"/></td>
+                </tr>
+                <tr id="t2">
+                    <th>CVV</th>
+                    <td><input class="form-control" name="cvv" type="text"/></td>
+                </tr>
+                <tr id="t3">
+                    <th>Expiry Date</th>
+                    <td><input class="form-control" name="expDate" type="date"/></td>
+                </tr>
+                <tr>
+                    <td class="text-center p-5" colspan="2">
+                        <button class="btn btn-success btn-submit" type="submit">Book Now</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+
+
+</div>
+</body>
+
+</html>

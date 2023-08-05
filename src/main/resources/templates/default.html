@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Car Sales Management</title>
+	<link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body  style="background:url('http://localhost:8080/img/bg.jpg')">
+
+
+	<nav class="navbar  navbar-expand-lg navbar-dark bg-primary">
+
+		<div class="container">
+
+			<a class="navbar-brand" href="#">
+				<span style="color:white; text-shadow:1px 1px 1px black;">Car Sales Management</span>
+				&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				
+				<div th:if="${session.usertype == 'admin'}" class="navbar-nav">
+					<a class="nav-link" href="/account/home">Home</a>
+					<a class="nav-link" href="/category/list">Categories</a>
+					<a class="nav-link" href="/buyer/list">Buyers</a>
+					<a class="nav-link" href="/seller/list">Sellers</a>
+					<a class="nav-link" href="/car/list">PostedCars</a>
+					<a class="nav-link" href="/booking/list">BookedCars</a>
+					<a class="nav-link" href="/booking/sold">Sold&nbsp;Cars</a>
+					<a class="nav-link" href="/booking/settlements">Settlements</a>
+					<a class="nav-link" href="/account/profile">Profile</a>
+					<a class="nav-link" href="/account/logout">Logout</a>
+				</div>
+				
+				<div th:if="${session.usertype == 'buyer'}" class="navbar-nav">
+					<a class="nav-link" href="/buyer/home">Home</a>	
+					<a class="nav-link" href="/buyer/edit">Profile</a>
+					<a class="nav-link" href="/booking/list">My Bookings</a>
+					<a class="nav-link" href="/booking/purchased">Purchased Cars</a>
+					<a class="nav-link" href="/inquiry/list">Inquiries</a>
+					<a class="nav-link" href="/account/logout">Logout</a>
+				</div>
+				
+				
+				<div th:if="${session.usertype == 'seller'}" class="navbar-nav">
+					<a class="nav-link" href="/seller/home">Home</a>	
+					<a class="nav-link" href="/seller/edit">Profile</a>
+					<a class="nav-link" href="/car/list">MyCars</a>
+					<a class="nav-link" href="/booking/list">BookedCars</a>
+					<a class="nav-link" href="/booking/sold">Sold Cars</a>
+					<a class="nav-link" href="/inquiry/list">Inquiries</a>
+					<a class="nav-link" href="/booking/settlements">Settlements</a>
+					<a class="nav-link" href="/account/logout">Logout</a>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid ">
+
+		<div class="container content-page" >
+			<div style="min-height:600px;">
+
+				<div class="starter-template" layout:fragment="content">
+
+				</div>
+			</div>
+		</div><!-- /.container -->
+	</div>
+	<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

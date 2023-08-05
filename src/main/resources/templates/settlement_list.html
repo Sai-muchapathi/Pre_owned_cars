@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en" layout:decorate="default" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Settlement Details</title>
+</head>
+
+<body>
+<div class="row" layout:fragment="content">
+    <div class="row page-list">
+
+        <h2>Settlement Details</h2>
+        <h6 class="text-danger text-center" th:text="${msg}"></h6>
+        <div class="table-responsive">
+            <table class="table table-striped page-details">
+                <thead class="table-dark">
+                <tr>
+                    <th>payment&nbsp;Id</th>
+                    <th>Seller&nbsp;Id</th>
+                    <th>Settlement&nbsp;Date</th>
+                    <th>Sale Amount</th>
+                    <th>Commission(%)</th>
+                    <th>Commission&nbsp;Amt</th>
+                    <th>Settlement&nbsp;Amt</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="data : ${datalist}">
+                    <td th:text="${data.paymentId}"></td>
+                    <td th:text="${data.sellerId}"></td>
+                    <td th:text="${data.payDate}"></td>
+                    <td th:text="|$ ${data.saleAmount}"></td>
+                    <td th:text="| ${data.commissionPercentage}"></td>
+                    <td th:text="|$ ${data.commissionAmount}"></td>
+                    <td th:text="|$ ${data.saleAmount-data.commissionAmount}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

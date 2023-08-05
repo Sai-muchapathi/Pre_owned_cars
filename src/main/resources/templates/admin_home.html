@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="default">
+
+<head>
+	<title> Admin</title>
+</head>
+
+<body>
+	<div layout:fragment="content" class="row page-create">
+		<div class="row">
+			<br><br>
+
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="col-md-4" th:each="data : ${datalist}">
+					<div class="card h-100">
+						<img th:src="'/uploads/'+${data.imgUrl}" class="card-img-top">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${data.packageName}"></h5>
+							<p class="card-text">
+							<table width="100%">
+								<tr>
+									<td th:text="${data.locations}"></td>
+								</tr>
+
+							</table>
+							</p>
+						</div>
+						<div class="card-footer text-center">
+							<a th:href="@{'/car/details/'+${data.id}}" class="btn btn-primary">Details</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</body>
+
+</html>

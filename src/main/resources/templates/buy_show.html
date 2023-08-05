@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="default">
+
+<head>
+	<title>Show Buyer</title>
+</head>
+
+<body>
+	<div layout:fragment="content" class="row page-view">
+		<div class="row">
+
+			<h2>
+				Buyer Details
+			</h2>
+
+			<table class="tbl-show table table-success " style="width:600px">
+				<tr>
+					<td>ID</td>
+					<td th:text="${obj.buyerId}"></td>
+				</tr>
+				<tr>
+					<td>Name</td>
+					<td th:text="${obj.name}"></td>
+				</tr>
+				<tr>
+					<td>Phone</td>
+					<td th:text="${obj.mobile}"></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td th:text="${obj.emailId}"></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td th:text="${obj.address}"></td>
+				</tr>
+			</table>
+
+			<form action="/buyer/delete">
+				<input type="hidden" name="id" th:value="${obj.id}" />
+				<h2>
+					<input type="submit" class="btn btn-danger btn-submit" value="Delete"
+						onclick="return confirm('Are you sure?');" />
+
+					<a th:href="@{'/buyer/edit/' + ${obj.id}}" class="btn btn-warning btn-submit">Edit</a>
+
+				</h2>
+
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>
